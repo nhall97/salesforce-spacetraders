@@ -16,4 +16,25 @@ public class generateUserAndToken {
         HttpResponse res = h.send(req);
         return res;
     }
+
+    private static spaceTraders.User parseResponseForUsername (HttpResponse res)
+    {
+        spaceTraders.User spacetraderUser = (spaceTraders.User)JSON.deserialize(res.getBody(), spaceTraders.User.class);
+
+        return spacetraderUser;
+    }
+
+
+    // {
+    //     "token": "215bb7e6-4a69-47d7-a158-e71e2578dccb",
+    //     "user": {
+    //         "id": "ckmqdaxw046048615s6oabhoc7v",
+    //         "username": "test3",
+    //         "picture": null,
+    //         "email": null,
+    //         "credits": 0,
+    //         "createdAt": "2021-03-26T13:55:59.376Z",
+    //         "updatedAt": "2021-03-26T13:55:59.376Z"
+    //     }
+    // }
 }
