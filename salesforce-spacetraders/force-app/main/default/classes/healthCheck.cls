@@ -2,8 +2,8 @@ public class healthCheck {
   // Pass in the endpoint to be used using the string url
   
   //public static String healthCheckUrl = '';
-    
-  public static String getCalloutResponseContents() {
+  
+  public static HttpResponse getGameHealth() {
  
     // Instantiate a new http object
     Http h = new Http();
@@ -15,6 +15,6 @@ public class healthCheck {
  
     // Send the request, and return a response
     HttpResponse res = h.send(req);
-    return res.getBody();
+    return res;
   }
 }
