@@ -4,7 +4,7 @@ global class healthCheckMock implements HttpCalloutMock {
     global HTTPResponse respond(HTTPRequest req) {
         // Optionally, only send a mock response for a specific endpoint
         // and method.
-        System.assertEquals('http://example.com/example/test', req.getEndpoint());
+        System.assertEquals('https://api.spacetraders.io/game/status', req.getEndpoint());
         System.assertEquals('GET', req.getMethod());
         
         // Create a fake response
