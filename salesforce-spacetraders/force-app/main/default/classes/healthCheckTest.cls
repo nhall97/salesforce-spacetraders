@@ -4,11 +4,10 @@ public with sharing class healthCheckTest {
         // Set mock callout class 
         Test.setMock(HttpCalloutMock.class, new healthCheckMock());
         
-        // Call method to test.
-        // This causes a fake response to be sent
-        // from the class that implements HttpCalloutMock. 
-        HttpResponse res = healthCheck.getGameHealth();
-        
+        Test.startTest();
+            HttpResponse res = healthCheck.getGameHealth();
+        Test.stopTest();
+
         // Verify response received contains fake values
         String contentType = res.getHeader('Content-Type');
         System.assert(contentType == 'application/json');
