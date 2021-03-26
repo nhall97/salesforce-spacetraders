@@ -10,3 +10,6 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
+
+# Community layout error
+force-app\main\default\layouts\CommunityMemberLayout-Community Member Layout.layout-meta.xml
