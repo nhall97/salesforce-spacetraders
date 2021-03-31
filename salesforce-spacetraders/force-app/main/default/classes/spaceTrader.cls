@@ -17,8 +17,8 @@ public with sharing class spaceTrader {
     class cls_email {
     }
 
-    public static spaceTraders parse(String json){
-        return (spaceTraders) System.JSON.deserialize(json, spaceTraders.class);
+    public static spaceTrader parse(String json){
+        return (spaceTrader) System.JSON.deserialize(json, spaceTrader.class);
     }
     
     // @isTest static testMethod void testParse() {

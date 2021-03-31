@@ -12,16 +12,17 @@ public class generateUserAndToken {
      
         // Send the request, and return a response
         HttpResponse res = h.send(req);
+
         return res;
     }
 
     @testVisible
-    private static spaceTraders parseResponseForUsername (HttpResponse res)
+    private static spaceTrader parseResponse(HttpResponse res)
     {
         System.debug(res.getBody());
-        spaceTraders spacetraderUser = (spaceTraders)JSON.deserialize(res.getBody(), spaceTraders.class);
+        spaceTrader spacetraderUser = (spaceTraders)JSON.deserialize(res.getBody(), spaceTraders.class);
 
-        spaceTraders.parse(res.getBody());
+        spaceTrader.parse(res.getBody());
 
         //System.debug(spacetraderUser);
         return spacetraderUser;

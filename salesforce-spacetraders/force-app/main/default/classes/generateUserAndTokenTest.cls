@@ -29,7 +29,7 @@ public with sharing class generateUserAndTokenTest {
         mock.setHeader('Content-Type', 'application/json');
         
         Test.setMock(HttpCalloutMock.class, mock);
-        spaceTraders st_user;
+        spaceTrader st_user;
 
         Test.startTest();
             HttpResponse res = generateUserAndToken.generateUserAndToken('test3');
