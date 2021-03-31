@@ -1,9 +1,7 @@
 public class generateUserAndToken {
     public static HttpResponse generateUserAndToken(String userName) {
- 
         // Instantiate a new http object
         Http h = new Http();
-     
         HttpRequest req = new HttpRequest();
 
         //https://api.spacetraders.io/users/:username/token
@@ -17,13 +15,17 @@ public class generateUserAndToken {
         return res;
     }
 
-    private static spaceTraders.User parseResponseForUsername (HttpResponse res)
+    @testVisible
+    private static spaceTraders parseResponseForUsername (HttpResponse res)
     {
-        spaceTraders.User spacetraderUser = (spaceTraders.User)JSON.deserialize(res.getBody(), spaceTraders.User.class);
+        System.debug(res.getBody());
+        spaceTraders spacetraderUser = (spaceTraders)JSON.deserialize(res.getBody(), spaceTraders.class);
 
+        spaceTraders.parse(res.getBody());
+
+        //System.debug(spacetraderUser);
         return spacetraderUser;
     }
-
 
     // {
     //     "token": "215bb7e6-4a69-47d7-a158-e71e2578dccb",
