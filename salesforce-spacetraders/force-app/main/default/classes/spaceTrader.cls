@@ -1,4 +1,4 @@
-public with sharing class spaceTraders {
+public with sharing class spaceTrader {
     public String token;	//43eb84d8-ccdf-461a-8894-913793018868
     public cls_user user;
 
