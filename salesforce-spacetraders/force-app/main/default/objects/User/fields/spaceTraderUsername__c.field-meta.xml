@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>spacetradersToken__c</fullName>
-    <description>Store the user token for spacetraders api</description>
-    <externalId>false</externalId>
-    <label>spacetradersToken</label>
+    <fullName>spaceTraderUsername__c</fullName>
+    <description>Username field for the username returned from the spacetraders API</description>
+    <externalId>true</externalId>
+    <label>spacetradersUsername</label>
     <length>100</length>
     <required>false</required>
-    <securityClassification>Confidential</securityClassification>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Text</type>
     <unique>false</unique>
