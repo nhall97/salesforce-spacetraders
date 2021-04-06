@@ -1,31 +1,61 @@
 public class generateUserAndToken {
-    public static HttpResponse generateUserAndToken(String userName) {
-        // Instantiate a new http object
+    public static void generate(String userName) {
+        User sf_user = getCurrentUser();
+
+        HttpResponse res = doCallout(userName);
+
+        //create http request
+        spaceTrader st_user = parseResponse(res);
+
+        System.debug('DEBUG st_user.token: ' + st_user.token);
+
+        sf_user = mapResponseToBody(st_user, sf_user);
+
+        System.debug('DEBUG sf_user.token: ' + st_user.token);
+        try {
+            update sf_user;
+        } catch (Exception ex)
+        {
+            System.debug('ERROR in updating user: ' + ex);
+        }
+    }
+
+    public static HttpResponse doCallout(String userName)
+    {
         Http h = new Http();
         HttpRequest req = new HttpRequest();
-
-        //https://api.spacetraders.io/users/:username/token
-        //https://api.spacetraders.io/users/test3/token
-
         req.setEndpoint('https://api.spacetraders.io/users/' + userName + '/token');
         req.setMethod('POST');
-     
-        // Send the request, and return a response
         HttpResponse res = h.send(req);
 
         return res;
+    }
+
+    public static User getCurrentUser()
+    {
+        User currentUser = [SELECT Id, Name FROM User WHERE Id =: UserInfo.getUserId()];
+        return currentUser;
     }
 
     @testVisible
     private static spaceTrader parseResponse(HttpResponse res)
     {
         System.debug(res.getBody());
-        spaceTrader spacetraderUser = (spaceTraders)JSON.deserialize(res.getBody(), spaceTraders.class);
+        spaceTrader spacetraderUser = (spaceTrader)JSON.deserialize(res.getBody(), spaceTrader.class);
 
         spaceTrader.parse(res.getBody());
 
         //System.debug(spacetraderUser);
         return spacetraderUser;
+    }
+
+    private static User mapResponseToBody(spaceTrader st_user, User sf_user)
+    {
+        sf_user.spaceTraderToken__c = st_user.token;
+        System.debug('DEBUG sf_user.spaceTraderToken__c: ' + sf_user.spaceTraderToken__c);
+        sf_user.spaceTraderUsername__c = st_user.user.username;
+        sf_user.spaceTraderId__c = st_user.user.id;
+        return sf_user;
     }
 
     // {
